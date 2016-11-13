@@ -1,4 +1,4 @@
-<section ng-init="addContactsCtrlInit()">
+<section ng-init="editContactsCtrlInit()">
     <div class="row">
         <div class="col-md-3">
             <div class="list-group">
@@ -10,7 +10,7 @@
         </div>
         <!-- /.col-md-3 -->
         <div class="col-md-9">
-          <form name="contactForm" ng-submit="save()">
+          <form name="contactForm" ng-submit="updateContact()">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <strong>Add Contact</strong>
@@ -58,7 +58,7 @@
                                     <label for="group" class="control-label col-md-3">Group</label>
                                     <div class="col-md-8">
                                         <select name="group" id="group" class="form-control" ng-model="contact.group" ng-options="group.key as group.value for group in groupList">
-                                          <option value="">Select group</option>
+                                          
                                         </select>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                         <div class="col-md-8">
                             <div class="row">
                                 <div class="col-md-offset-3 col-md-6">
-                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                     <a ui-sref="home" class="btn btn-default">Cancel</a>
                                 </div>
                             </div>

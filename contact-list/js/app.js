@@ -1,7 +1,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ui.router', 'controllers'])
+angular.module('starter', ['ui.router', 'ngStorage', 'controllers'])
 
 // for title
 .run(['$rootScope', '$state', '$stateParams',
@@ -17,7 +17,7 @@ angular.module('starter', ['ui.router', 'controllers'])
             url: "/home",
             templateUrl: "templates/home.html",
             data : { pageTitle: 'Home' },
-            // controller: 'homeCtrl'
+            controller: 'homeCtrl'
         })
 
     // if you have menu then routes like that
@@ -42,7 +42,13 @@ angular.module('starter', ['ui.router', 'controllers'])
         url: "/addContacts",
         templateUrl: "templates/addContacts.html",
         data : { pageTitle: 'Add Contacts' },
-        // controller: 'addContactsCtrl'
+        controller: 'addContactsCtrl'
+    })
+    .state('editContacts', {
+        url: "/editContacts",
+        templateUrl: "templates/editContacts.html",
+        data : { pageTitle: 'Edit Contacts' },
+        controller: 'editContactsCtrl'
     })
 
 

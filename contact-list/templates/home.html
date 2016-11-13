@@ -1,11 +1,11 @@
-<section>
+<section ng-init="homeCtrlInit()">
     <div class="row">
         <div class="col-md-3">
             <div class="list-group">
-                <a href="#" class="list-group-item active">All Contact <span class="badge"> 10 </span>  </a>
-                <a href="#" class="list-group-item">Family <span class="badge"> 4 </span> </a>
-                <a href="#" class="list-group-item">Friends <span class="badge"> 3 </span> </a>
-                <a href="#" class="list-group-item">Others <span class="badge"> 5 </span> </a>
+                <button class="list-group-item active" ng-click="contactFilter= '' ">All Contact <span class="badge"> {{totalCount}} </span>  </button>
+                <button class="list-group-item" ng-click="contactFilter={group:'family'} ">Family <span class="badge"> {{familyCount}} </span> </button>
+                <button class="list-group-item" ng-click="contactFilter={group:'friends'} ">Friends <span class="badge"> {{friendsCount}} </span> </button>
+                <button class="list-group-item" ng-click="contactFilter={group:'others'} ">Others <span class="badge"> {{othersCount}} </span> </button>
             </div>
         </div>
         <!-- /.col-md-3 -->
@@ -13,46 +13,26 @@
 
             <div class="panel panel-default">
                 <table class="table">
-                    <tr>
+                    <tr ng-repeat="contact in contactList | filter : contactFilter ">
                         <td>
                             <div class="media">
                                 <div class="media-body">
-                                    <h4 class="media-heading">Contact 1</h4>
+                                    <h4 class="media-heading">Contact {{$index+1}}</h4>
                                     <address>
-                        <strong>Job</strong><br>
-                        contact1@sample.com
-                      </address>
+                                      <strong>{{contact.name}}</strong><br>
+                                      {{contact.email}}
+                                    </address>
+                                    <span style="display:none">{{contact.group}}</span>
                                 </div>
                             </div>
                         </td>
                         <td width="100px" class="mymiddle">
-                            <a href="#" class="btn btn-circle btn-default btn-xs" title="Edit">
+                            <button class="btn btn-circle btn-default btn-xs" title="Edit" ng-click="editContact($index)">
                                 <i class="glyphicon glyphicon-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-circle btn-danger btn-xs" title="Remove">
+                            </button>
+                            <button class="btn btn-circle btn-danger btn-xs" title="Remove" ng-click="deleteContact($index)">
                                 <i class="glyphicon glyphicon-remove"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h4 class="media-heading">Contact 2</h4>
-                                    <address>
-                        <strong>Job 2</strong><br>
-                        contact2@sample.com
-                      </address>
-                                </div>
-                            </div>
-                        </td>
-                        <td width="100px" class="mymiddle">
-                            <a href="#" class="btn btn-circle btn-default btn-xs" title="Edit">
-                                <i class="glyphicon glyphicon-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-circle btn-danger btn-xs" title="Remove">
-                                <i class="glyphicon glyphicon-remove"></i>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 </table>
