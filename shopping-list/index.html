@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Shopping List</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <script src="lib/angular.min.js"></script>
@@ -12,16 +12,52 @@
 </head>
 
 <body ng-app="shoppingList">
-    <div ng-controller="myCtrl">
-        <ul>
-            <li ng-repeat="product in products">{{product}}<span ng-click="removeItem($index)">×</span></li>
-        </ul>
-        <input ng-model="addMe">
-        <button ng-click="addItem()">Add</button>
-        <p>{{errortext}}</p>
-    </div>
+    <div class="container" ng-controller="myCtrl">
+        <div class="row">
+            <div class="page-header">
+                <h2 class="text-center">AngularJs</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <ul class="list-group">
+                    <li class="list-group-item text-center"><span class="heading">Shopping List</span></li>
+                    <li class="list-group-item" ng-repeat="product in products">
+                        <div class="row">
+                            <div class="col-md-9">
+                                {{product}}
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-danger btn-sm pull-right" ng-click="removeItem($index)">
+                            <i class="glyphicon glyphicon glyphicon-trash"></i>
+                          </button>
+                            </div>
+                        </div>
+                    </li>
 
-    <p>Try to add the same item twice, and you will get an error message.</p>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" ng-model="addMe" placeholder="Add Items" />
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary pull-right" ng-click="addItem()"><i class="glyphicon glyphicon glyphicon-plus"></i>Add</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="alert alert-warning" role="alert" ng-if="errorText">
+                    <p class="text-center"><strong>Warning!</strong> Item is already in shopping list.</p>
+                </div>
+                <div class="alert alert-danger" role="alert" ng-if="removeText">
+                    <p class="text-center"><strong>Oh snap!</strong> Item has been removed in shopping list.</p>
+                </div>
+                <!-- <div class="">
+                  <p class="text-center">{{errortext}}</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
 
 </body>
 
